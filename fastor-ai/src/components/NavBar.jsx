@@ -1,13 +1,20 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { GiNetworkBars } from "react-icons/gi";
-import { FaWifi,FaBatteryFull } from "react-icons/fa6";
+import { FaWifi, FaBatteryFull } from "react-icons/fa6";
 
 const NavBar = () => {
   const getFormattedTime = () => {
     const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    console.log(hours);
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
     return `${hours}:${minutes}`;
   };
   const [currentISTTime, setCurrentISTTime] = useState(getFormattedTime());

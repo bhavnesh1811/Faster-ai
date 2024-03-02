@@ -13,11 +13,12 @@ import {
 import { PinInput, PinInputField } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
 const VerifyOtp = () => {
   const { authState, verifyOtp } = useContext(AuthContext);
+  const otp = sessionStorage.getItem("otp");
   const [pin, setPin] = useState("");
   const toast = useToast();
   const navigate = useNavigate();
@@ -60,6 +61,8 @@ const VerifyOtp = () => {
         isClosable: true,
       });
       verifyOtp(res.data.token, res.data.user_name);
+      sessionStorage.setItem("token", JSON.stringify(res.data.token));
+      sessionStorage.setItem("user_name", JSON.stringify(res.data.user_name));
     } else {
       return toast({
         title: `There is some error`,
@@ -70,11 +73,15 @@ const VerifyOtp = () => {
       });
     }
 
-    navigate("/home");
+    navigate("/");
   };
+
+  if (!otp) {
+    return <Navigate to="/sendotp" />;
+  }
   return (
     <Box maxH={"100vh"}>
-      <Box cursor={"pointer"} onClick={() => navigate("/")}>
+      <Box cursor={"pointer"} onClick={() => navigate("/sendotp")}>
         <IoIosArrowBack
           style={{
             border: "1px solid lightgray",

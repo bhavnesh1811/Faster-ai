@@ -16,7 +16,8 @@ import { AuthContext } from "../context/AuthContextProvider";
 
 const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { storeOtp, authState } = useContext(AuthContext);
+  const { storeOtp } = useContext(AuthContext);
+  const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const toast = useToast();
@@ -53,6 +54,8 @@ const Register = () => {
         isClosable: true,
       });
       storeOtp("123456", phoneNumber);
+      sessionStorage.setItem("otp", JSON.stringify("123456"));
+      sessionStorage.setItem("phoneNumber", JSON.stringify(phoneNumber));
     } else {
       return toast({
         title: `There is some error`,
@@ -66,7 +69,7 @@ const Register = () => {
     navigate("/verifyOtp");
   };
 
-  if (authState.isAuth) {
+  if (token) {
     return <Navigate to="/" />;
   }
   return (
