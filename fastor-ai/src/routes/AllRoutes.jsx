@@ -4,6 +4,7 @@ import Register from "../Pages/Register";
 import VerifyOtp from "../Pages/VerifyOtp";
 import Home from "../Pages/Home";
 import { PrivateRoute } from "./PrivateRoute";
+import SingleRestaurant from "../Pages/SingleRestaurant";
 
 const AllRoutes = () => {
   return (
@@ -15,6 +16,14 @@ const AllRoutes = () => {
         element={
           <PrivateRoute>
             <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/singleRestaurant/:id"
+        element={
+          <PrivateRoute>
+            <SingleRestaurant />
           </PrivateRoute>
         }
       />

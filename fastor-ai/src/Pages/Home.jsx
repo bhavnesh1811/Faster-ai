@@ -1,7 +1,7 @@
-import { Box, Image, Flex, Text, Grid } from "@chakra-ui/react";
+import { Box, Grid, Heading } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
-import { BiSolidOffer } from "react-icons/bi";
+
+import RestaurantCard from "../components/RestaurantCard";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,6 @@ const Home = () => {
       throw new Error(`HTTP error! Status: ${res.status}`);
     } else {
       res = await res.json();
-      console.log(res);
       setData(res);
     }
     setLoading(false);
@@ -40,65 +39,25 @@ const Home = () => {
     return <Box>Loading....</Box>;
   }
   return (
-    <Grid
-      my={{base:"20px",md:"40px"}}
-      mx={{base:"8px",md:"16px"}}
-      gridTemplateColumns={{
-        base: "repeat(1,1fr)",
-        md: "repeat(2,1fr)",
-        xl: "repeat(3,1fr)",
-      }}
-      gap="16px"
-    >
-      {data &&
-        data.map((restaurant, index) => (
-          <Flex key={index} gap="12px">
-            <Box w={{ base: "45%", xl: "50%" }}>
-              <Image
-                alt={restaurant.images[0].url}
-                borderRadius={"12px"}
-                src={restaurant.images[0].url}
-              />
-            </Box>
-            <Flex
-              textAlign={"left"}
-              direction={"column"}
-              w={{ base: "55%", xl: "50%" }}
-              fontSize={{ base: "12px",md:"16"}}
-            >
-              <Text>{restaurant?.restaurant_name}</Text>
-              <Text>
-                {restaurant?.location?.location_locality},{" "}
-                {restaurant?.location?.city_name}
-              </Text>
-              <Flex color="#D39171" gap="4px" alignItems={"center"}>
-                <BiSolidOffer />
-                <Text>4 Offers Trending</Text>
-              </Flex>
-              <Flex justifyContent={"space-between"}>
-                <Flex direction={"column"}>
-                  <Flex gap="4px" alignItems={"center"}>
-                    <FaStar />
-                    <Text>{restaurant?.rating?.restaurant_avg_rating}</Text>
-                  </Flex>
-                  <Text>Popularity</Text>
-                </Flex>
-                <Flex direction={"column"} gap="4px">
-                  <Flex
-                    gap="4px"
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                  >
-                    <Text>{restaurant?.currency?.symbol}</Text>
-                    <Text>{restaurant?.avg_cost_for_two}</Text>
-                  </Flex>
-                  <Text>Cost For Two</Text>
-                </Flex>
-              </Flex>
-            </Flex>
-          </Flex>
-        ))}
-    </Grid>
+    <>
+    <Heading m={"20px auto"}>Popular Ones</Heading>
+      <Grid
+        my={{ base: "20px", md: "40px" }}
+        mx={{ base: "8px", md: "16px" }}
+        gridTemplateColumns={{
+          base: "repeat(1,1fr)",
+          md: "repeat(2,1fr)",
+          xl: "repeat(3,1fr)",
+        }}
+        gap="16px"
+        
+      >
+        {data &&
+          data.map((restaurant, index) => (
+            <RestaurantCard key={index} {...restaurant} />
+          ))}
+      </Grid>
+    </>
   );
 };
 

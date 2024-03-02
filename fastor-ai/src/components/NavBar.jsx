@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import { GiNetworkBars } from "react-icons/gi";
 import { FaWifi, FaBatteryFull } from "react-icons/fa6";
 
-const NavBar = () => {
+const NavBar = ({ color }) => {
   const getFormattedTime = () => {
     const now = new Date();
     let hours = now.getHours();
     let minutes = now.getMinutes();
-    console.log(hours);
     if (hours < 10) {
       hours = "0" + hours;
     }
@@ -28,11 +27,16 @@ const NavBar = () => {
   }, [currentISTTime]);
 
   return (
-    <Flex p={"20px"} justifyContent={"space-between"}>
+    <Flex
+      p={"20px"}
+      justifyContent={"space-between"}
+      position={"relative"}
+      zIndex={1}
+    >
       <Box>
-        <Text>{currentISTTime}</Text>
+        <Text color={color ? "white" : "black"}>{currentISTTime}</Text>
       </Box>
-      <Flex gap="8px">
+      <Flex gap="8px" color={color ? "white" : "black"}>
         <GiNetworkBars />
         <FaWifi />
         <FaBatteryFull />
