@@ -27,7 +27,7 @@ const RestaurantCard = (restaurant) => {
         fontSize={{ base: "12px", sm: "16px" }}
       >
         <Text>{restaurant?.restaurant_name}</Text>
-        <Text>Cakes,Pastry,Pastas</Text>
+        <Text color="#838BA1">Cakes,Pastry,Pastas</Text>
         <Text color="#838BA1">
           {restaurant?.location?.location_locality},{" "}
           {restaurant?.location?.city_name}
