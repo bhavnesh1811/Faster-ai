@@ -28,7 +28,7 @@ const NavBar = ({ color }) => {
 
   return (
     <Flex
-      p={"20px"}
+      p={"12px"}
       justifyContent={"space-between"}
       position={"relative"}
       zIndex={1}

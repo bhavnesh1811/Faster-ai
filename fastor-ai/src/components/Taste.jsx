@@ -25,13 +25,13 @@ const Taste = ({ carousalData }) => {
     },
     tablet: {
       breakpoint: { max: 924, min: 426 },
-      items: 3,
+      items: 2,
       partialVisibilityGutter: 40,
     },
     mobile: {
       breakpoint: { max: 425, min: 0 },
-      items: 3,
-      partialVisibilityGutter: 15,
+      items: 2,
+      partialVisibilityGutter: 30,
     },
   };
   return (
@@ -59,8 +59,7 @@ const Taste = ({ carousalData }) => {
           infinite={true}
           arrows={false}
           autoPlay={false}
-          autoPlaySpeed={2000}
-          keyBoardControl={false}
+          keyBoardControl={true}
           customTransition="all 0.5s"
           transitionDuration={1000}
           removeArrowOnDeviceType={["tablet", "mobile"]}
@@ -74,12 +73,12 @@ const Taste = ({ carousalData }) => {
                   p={1}
                   boxShadow="rgba(0, 0, 0, 0.15)0px 5px 15px"
                   flexDirection={"column"}
-                  marginInline={["2px", "6px", "10px", "14px"]}
+                  marginInline={["6px", "6px", "10px", "14px"]}
                   my="8px"
                 >
                   <Box>
                     <Image
-                      minH="120px"
+                      minH="85px"
                       alt={restaurant?.images[0].url}
                       borderRadius={"12px"}
                       src={restaurant?.images[0].url}
@@ -90,7 +89,8 @@ const Taste = ({ carousalData }) => {
                     textAlign={"left"}
                     direction={"column"}
                     fontSize={"12px"}
-                    h={{ base: "90px", md: "40px" }}
+                    h={{ base: "80px", md: "60px" }}
+                    overflow={"hidden"}
                   >
                     <Text>{restaurant?.restaurant_name}</Text>
                     <Text color="#838BA1">
