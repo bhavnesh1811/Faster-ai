@@ -14,6 +14,7 @@ const RestaurantCard = (restaurant) => {
     >
       <Box w={{ base: "45%", xl: "50%" }}>
         <Image
+        h="100%"
           alt={restaurant?.images[0].url}
           borderRadius={"12px"}
           src={restaurant?.images[0].url}
@@ -26,6 +27,7 @@ const RestaurantCard = (restaurant) => {
         fontSize={{ base: "12px", sm: "16px" }}
       >
         <Text>{restaurant?.restaurant_name}</Text>
+        <Text>Cakes,Pastry,Pastas</Text>
         <Text color="#838BA1">
           {restaurant?.location?.location_locality},{" "}
           {restaurant?.location?.city_name}
