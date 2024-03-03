@@ -10,7 +10,6 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(window.location);
     if (location.pathname.includes("/singleRestaurant")) {
       setColor(true);
     } else {

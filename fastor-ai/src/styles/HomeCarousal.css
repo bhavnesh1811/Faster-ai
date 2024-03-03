@@ -1,0 +1,9 @@
+ul + button + div + button + p {
+  display: none;
+}
+.carousal > div {
+  border-radius: 12px;
+}
+.carousal .css-0 {
+  border-radius: 12px;
+}
