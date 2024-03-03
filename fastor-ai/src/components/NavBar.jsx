@@ -19,7 +19,7 @@ const NavBar = ({ color }) => {
   const [currentISTTime, setCurrentISTTime] = useState(getFormattedTime());
 
   useEffect(() => {
-    const id = setTimeout(() => {
+    const id = setInterval(() => {
       setCurrentISTTime(getFormattedTime());
     }, 1000);
 
